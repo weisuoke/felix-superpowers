@@ -34,15 +34,31 @@ Start by understanding the current project context, then ask questions one at a 
 
 ## After the Design
 
-**Documentation:**
-- Write the validated design to `docs/plans/YYYY-MM-DD-<topic>-design.md`
-- Use elements-of-style:writing-clearly-and-concisely skill if available
-- Commit the design document to git
+**OpenSpec Integration:**
+- Ask: "Do you want to create an OpenSpec change document for this design?"
+- If yes, create complete OpenSpec change structure:
+  ```
+  openspec/changes/<feature-name>/
+  ├── proposal.md      # Extract from design discussion (Why, What Changes, Impact)
+  ├── design.md        # Technical decisions from design
+  ├── tasks.md         # High-level task checklist from design
+  ├── plan/            # Empty directory for writing-plans
+  └── specs/           # If spec changes needed
+  ```
+
+**proposal.md content:**
+- `## Why` - Purpose and motivation from discussion
+- `## What Changes` - Summary of changes from design
+- `## Impact` - Affected code and specifications
+
+**tasks.md content:**
+- Break design into high-level tasks
+- Use OpenSpec format: `- [ ] N.N Task description`
 
 **Implementation (if continuing):**
 - Ask: "Ready to set up for implementation?"
 - Use superpowers:using-git-worktrees to create isolated workspace
-- Use superpowers:writing-plans to create detailed implementation plan
+- Use superpowers:writing-plans to create detailed implementation plan in `openspec/changes/<feature>/plan/`
 
 ## Key Principles
 

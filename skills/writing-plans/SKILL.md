@@ -7,7 +7,7 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 
 ## Overview
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD.
 
 Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
 
@@ -15,7 +15,16 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Context:** This should be run in a dedicated worktree (created by brainstorming skill).
 
-**Save plans to:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
+**OpenSpec Integration:**
+- If OpenSpec change exists, read context from:
+  - `openspec/changes/<feature>/proposal.md` - Understand purpose
+  - `openspec/changes/<feature>/tasks.md` - Task framework
+  - `openspec/changes/<feature>/design.md` - Technical decisions (if exists)
+- Save plans to: `openspec/changes/<feature>/plan/YYYY-MM-DD-v<N>.md`
+- Auto-detect version number (v1, v2, v3...) based on existing files in plan/
+
+**Fallback (no OpenSpec):**
+- Save plans to: `docs/plans/YYYY-MM-DD-<feature-name>.md`
 
 ## Bite-Sized Task Granularity
 
@@ -24,7 +33,8 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 - "Run it to make sure it fails" - step
 - "Implement the minimal code to make the test pass" - step
 - "Run the tests and make sure they pass" - step
-- "Commit" - step
+
+**Note:** Commits are not mandatory per task. Developer decides when to commit.
 
 ## Plan Document Header
 
@@ -35,9 +45,11 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** [One sentence describing what this builds]
+**OpenSpec Change:** `openspec/changes/<feature-name>/` (if applicable)
 
-**Architecture:** [2-3 sentences about approach]
+**Goal:** [One sentence describing what this builds - from proposal.md if available]
+
+**Architecture:** [2-3 sentences about approach - from design.md if available]
 
 **Tech Stack:** [Key technologies/libraries]
 
@@ -78,13 +90,6 @@ def function(input):
 
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: PASS
-
-**Step 5: Commit**
-
-```bash
-git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
-```
 ```
 
 ## Remember
@@ -92,13 +97,14 @@ git commit -m "feat: add specific feature"
 - Complete code in plan (not "add validation")
 - Exact commands with expected output
 - Reference relevant skills with @ syntax
-- DRY, YAGNI, TDD, frequent commits
+- DRY, YAGNI, TDD
+- Read OpenSpec context first if available
 
 ## Execution Handoff
 
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
+**"Plan complete and saved to `openspec/changes/<feature>/plan/<filename>.md` (or `docs/plans/<filename>.md` if no OpenSpec). Two execution options:**
 
 **1. Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
 

@@ -1,3 +1,6 @@
 .worktrees/
 .private-journal/
 .claude/
+diagram
+implements
+.external
