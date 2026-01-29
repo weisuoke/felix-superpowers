@@ -65,6 +65,8 @@ Based on feedback:
 After all tasks complete and verified:
 - **If OpenSpec change:** Ensure all tasks in tasks.md are marked `[x]`
 - **If OpenSpec change:** Announce: "All tasks complete. Run `openspec archive <change-name>` to archive this change."
+- **If OpenSpec change:** Use `superpowers:openspec-verification` to verify PRD compliance
+  - Only proceed if verification passes
 - Announce: "I'm using the finishing-a-development-branch skill to complete this work."
 - **REQUIRED SUB-SKILL:** Use superpowers:finishing-a-development-branch
 - Follow that skill to verify tests, present options, execute choice

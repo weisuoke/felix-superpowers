@@ -137,3 +137,10 @@ From 24 failure memories:
 Run the command. Read the output. THEN claim the result.
 
 This is non-negotiable.
+
+## Next Steps
+
+After verification passes:
+
+1. **If OpenSpec change exists:** Use `superpowers:openspec-verification` to verify PRD compliance
+2. **Then:** Use `superpowers:finishing-a-development-branch` to complete the work

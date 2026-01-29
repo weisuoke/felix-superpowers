@@ -78,7 +78,12 @@ digraph process {
     "Mark task complete in TodoWrite" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer subagent for entire implementation" [label="no"];
-    "Dispatch final code reviewer subagent for entire implementation" -> "Use superpowers:finishing-a-development-branch";
+    "Dispatch final code reviewer subagent for entire implementation" -> "OpenSpec change exists?";
+    "OpenSpec change exists?" [shape=diamond];
+    "Use superpowers:openspec-verification" [shape=box];
+    "OpenSpec change exists?" -> "Use superpowers:openspec-verification" [label="yes"];
+    "OpenSpec change exists?" -> "Use superpowers:finishing-a-development-branch" [label="no"];
+    "Use superpowers:openspec-verification" -> "Use superpowers:finishing-a-development-branch" [label="pass"];
 }
 ```
 
@@ -231,6 +236,7 @@ Done!
 **Required workflow skills:**
 - **superpowers:writing-plans** - Creates the plan this skill executes
 - **superpowers:requesting-code-review** - Code review template for reviewer subagents
+- **superpowers:openspec-verification** - Verify PRD compliance (if OpenSpec change exists)
 - **superpowers:finishing-a-development-branch** - Complete development after all tasks
 
 **Subagents should use:**

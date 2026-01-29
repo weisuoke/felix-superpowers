@@ -13,6 +13,24 @@ Guide completion of development work by presenting clear options and handling ch
 
 **Announce at start:** "I'm using the finishing-a-development-branch skill to complete this work."
 
+## Prerequisites
+
+**Before using this skill:**
+
+1. `superpowers:verification-before-completion` must pass (tests, build, etc.)
+2. **If OpenSpec change exists:** `superpowers:openspec-verification` must pass
+
+```bash
+# Check if OpenSpec change exists
+ls openspec/changes/ 2>/dev/null
+```
+
+If OpenSpec change exists and `openspec-verification` hasn't been run:
+```
+OpenSpec change detected. Running openspec-verification first...
+```
+Then use `superpowers:openspec-verification` before proceeding.
+
 ## The Process
 
 ### Step 1: Verify Tests
